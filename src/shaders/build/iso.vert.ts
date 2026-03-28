@@ -1,0 +1,1 @@
+export const iso_vert = "#version 300 es\n \nlayout(location = 0) in vec4 a_position;\nlayout(location = 1) in vec4 a_normal;\n\nuniform mat4 u_mvp;\nuniform mat3 u_normal;\nuniform vec4 u_color;\n\n// out vec4 v_color;\nout vec3 v_normal;\n \nvoid main() {\n    v_normal = normalize(u_normal * a_normal.xyz);\n    gl_Position = u_mvp * a_position;\n}\n";

@@ -1,0 +1,76 @@
+html,
+body {
+  height: 100%;
+  color: white;
+  background: black;
+  font-family: monospace;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+.main-nav {
+  padding: 8px;
+}
+.main-nav a {
+  padding-inline: 8px;
+}
+main {
+  display: grid;
+  overflow-y: auto;
+  grid-template-columns: 160px 1fr;
+  flex-grow: 1;
+}
+
+.decorative-block {
+  height: 160px;
+  background: linear-gradient(teal, violet);
+  animation: hue-spin 6s linear infinite;
+  border: 8px solid black;
+  box-sizing: border-box;
+}
+@keyframes hue-spin {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+.article-list {
+  border: 1px solid blueviolet;
+  overflow-y: auto;
+}
+
+.article-list ul {
+  margin-top: 16px;
+  list-style-type: none;
+}
+
+.article-list a {
+  padding-block: 4px;
+  padding-inline: 8px;
+  display: block;
+  color: teal;
+  text-decoration: none;
+}
+
+.article-list a:hover {
+  background: teal;
+  color: white;
+}
+
+main article {
+  padding: 16px;
+  border: 1px solid orange;
+}
+
+canvas {
+  border: 1px solid white;
+  image-rendering: pixelated;
+}

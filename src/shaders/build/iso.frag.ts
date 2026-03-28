@@ -1,0 +1,1 @@
+export const iso_frag = "#version 300 es\n\nprecision highp float;\n\nin vec3 v_normal;\n \n// we need to declare an output for the fragment shader\nout vec4 outColor;\n \nvoid main() {\n  vec3 color = normalize(v_normal) * 0.5 + 0.5;\n  // Just set the output to a constant reddish-purple\n  outColor = vec4(color, 0.9);\n}";

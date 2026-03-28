@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas</title>
+    <link href="./style.css" rel="stylesheet" />
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const canvas = document.getElementById('canvas')
+        function resizeCanvas() {
+          canvas.height = window.innerHeight
+          canvas.width = window.innerWidth
+          console.log(canvas.height, canvas.width)
+        }
+        window.addEventListener('resize', resizeCanvas)
+        resizeCanvas()
+        const ctx = canvas.getContext('2d')
+        const particles = []
+        const config = {
+          speedMin: 0.1,
+          speedMax: 6,
+          sizeMin: 1.5,
+          sizeMax: 50,
+        }
+        ctx.fillStyle = 'white'
+        function addParticle() {
+          const r = Math.random() ** 5
+          const size = config.sizeMin + (config.sizeMax - config.sizeMin) * r
+          const speed =
+            config.speedMin + (config.speedMax - config.speedMin) * r
+          const x = -size
+          const y = canvas.height * Math.random()
+          particles.push({ size, speed, x, y })
+        }
+
+        function render() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height)
+          for (let i = 0; i < particles.length; i++) {
+            const particle = particles[i]
+            if (particle.x >= canvas.width) {
+              particles.splice(i, 1)
+            }
+            ctx.fillRect(particle.x, particle.y, particle.size, particle.size)
+            particle.x += particle.speed
+          }
+          if (Math.random() < 0.07) addParticle()
+          requestAnimationFrame(render)
+        }
+        render()
+      })
+    </script>
+  </head>
+  <body>
+    <div>
+      <canvas id="canvas"></canvas>
+    </div>
+  </body>
+</html>

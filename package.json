@@ -1,0 +1,23 @@
+{
+  "name": "blog",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "new": "bun scripts/new-page.ts",
+    "dev": "bun watch-shaders.ts & bun server.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@types/stats.js": "^0.17.4",
+    "gl-matrix": "^3.4.4",
+    "lil-gui": "^0.21.0",
+    "simplex-noise": "^4.0.3",
+    "stats.js": "^0.17.0"
+  }
+}

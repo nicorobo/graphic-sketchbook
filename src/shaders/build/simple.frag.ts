@@ -1,0 +1,1 @@
+export const simple_frag = "#version 300 es\n\nprecision highp float;\n\nin vec4 f_color;\nin vec3 v_lighting;\nuniform vec4 u_color;\n \n// we need to declare an output for the fragment shader\nout vec4 outColor;\n \nvoid main() {\n  // Just set the output to a constant reddish-purple\n  outColor = vec4(f_color.rgb * v_lighting, 1);\n}";
