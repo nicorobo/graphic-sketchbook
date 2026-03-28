@@ -15,6 +15,7 @@ let t = 0
 scene.render(t)
 const render = () => {
   scene.render(t)
+  basin.rotation[0] = t * 0.004
   t += 1
   requestAnimationFrame(render)
 }

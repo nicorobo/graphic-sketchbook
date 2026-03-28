@@ -14,12 +14,12 @@ export class Model extends Transformable {
     }
 
     draw(gl: WebGL2RenderingContext, mvp: mat4) {
-        const modelView = this.getTransformMatrix()
+        const modelMatrix = this.getTransformMatrix()
         const matrix = mat4.create()
-        mat4.multiply(matrix, mvp, modelView)
+        mat4.multiply(matrix, mvp, modelMatrix)
 
         for (const mesh of this.meshes) {
-            mesh.draw(gl, matrix)
+            mesh.draw(gl, matrix, modelMatrix)
         }
     }
 }

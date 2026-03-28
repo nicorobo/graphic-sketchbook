@@ -47,24 +47,27 @@ const generateFace = (matrix: mat4, n: number = 1, size = 1) => {
       const d = c + 1
       indices.push(a, b, c)
       indices.push(b, d, c)
-      edgeIndices.push(a, b, d, c)
+      edgeIndices.push(a, b, b, d, d, c, c, a)
     }
   }
 
-  return { vertices, indices, normals }
+  return { vertices, indices, edgeIndices, normals }
 }
 
 const generateFaces = (transforms: mat4[], n: number) => {
   const vertices: number[] = []
   const indices: number[] = []
   const normals: number[] = []
+  const edgeIndices: number[] = []
   transforms.forEach((matrix, i) => {
     const face = generateFace(matrix, n)
+    const offset = i * (n + 1) ** 2
     vertices.push(...face.vertices)
     normals.push(...face.normals)
-    indices.push(...face.indices.map((index) => (index + i * ((n + 1) ** 2))))
+    indices.push(...face.indices.map((index) => index + offset))
+    edgeIndices.push(...face.edgeIndices.map((index) => index + offset))
   })
-  return { vertices, indices, normals }
+  return { vertices, indices, edgeIndices, normals }
 }
 
 export class CubeGeometry extends Geometry {
@@ -74,7 +77,10 @@ export class CubeGeometry extends Geometry {
     divisions: number = 1,
   ) {
     const transforms = buildCubeTransforms(scale)
-    const { vertices, normals, indices } = generateFaces(transforms, divisions)
-    super(gl, vertices, normals, indices)
+    const { vertices, normals, indices, edgeIndices } = generateFaces(
+      transforms,
+      divisions,
+    )
+    super(gl, vertices, normals, indices, edgeIndices)
   }
 }

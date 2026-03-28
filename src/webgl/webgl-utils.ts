@@ -83,4 +83,5 @@ export const setIndexBuffer = (
     new Uint16Array(indices),
     gl.STATIC_DRAW,
   )
+  return indexBuffer
 }
